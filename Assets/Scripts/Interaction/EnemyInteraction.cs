@@ -7,6 +7,6 @@ public class EnemyInteraction : Interaction
     protected override void Interact()
     {
         base.Interact();
-        Debug.Log("Enemy: атвкувати.");
+        Debug.Log("Enemy: атакувати.");
     }
 }
