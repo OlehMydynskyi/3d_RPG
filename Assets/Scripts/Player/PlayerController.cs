@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,18 +13,25 @@ public class PlayerController : MonoBehaviour
     private MeshRenderer meshRenderer;
     private bool isMove;
     private Interaction lastTarget;
-
+    public PlayerInventoryController PlayerInventory { get; private set; }
+    [SerializeField] public InventoryMenuController inventoryMenu;
 
     void Start()
     {
         cam = Camera.main;
         navMeshAgent = GetComponent<NavMeshAgent>();
         meshRenderer = GetComponent<MeshRenderer>();
+        PlayerInventory = GetComponent<PlayerInventoryController>();
     }
 
     void Update()
     {
-        leftPointerClicked = Input.GetButton("Fire1");
+        if (!EventSystem.current.IsPointerOverGameObject())
+            leftPointerClicked = Input.GetButton("Fire1");
+
+        if (Input.GetKeyUp(KeyCode.I))
+            inventoryMenu.ChangeWindowState();
+
     }
 
     private void FixedUpdate()

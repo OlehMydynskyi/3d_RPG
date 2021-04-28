@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class ItemsInteraction : Interaction
 {
+    private Item item;
+
+    protected override void Start()
+    {
+        base.Start();
+        item = GetComponent<Item>();
+    }
     protected override void Interact()
     {
         base.Interact();
-        Debug.Log("Item: підняти об'єкт.");
+        if (playerInventory.AddToInventory(item))
+            Destroy(gameObject);
     }
 }

@@ -7,8 +7,15 @@ public class Interaction : MonoBehaviour
     private bool isFocused;
     private bool hasInteracted;
     private PlayerController player;
+    protected PlayerInventoryController playerInventory;
     [SerializeField] private float interactionDistance;
     [SerializeField] private float distanceMultiplier;
+
+    protected virtual void Start()
+    {
+        
+    }
+
     public virtual float StopingDistance
     {
         get
@@ -19,6 +26,7 @@ public class Interaction : MonoBehaviour
     {
         isFocused = true;
         player = _player;
+        playerInventory = _player.PlayerInventory;
     }
 
     public void OnUnfocus()
